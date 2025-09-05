@@ -9,7 +9,7 @@ Original file is located at
 
 # -*- coding: utf-8 -*-
 """
-B-PASS_Main script.py
+B-PASS_processing_script.py
 
 ================================================================================
 B-PASS Data Processing for the Niigata Experiment
