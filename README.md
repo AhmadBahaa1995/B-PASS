@@ -1,7 +1,7 @@
-# B-PASS: Passive Seismic Data Processing for the Niigata Experiment
+# B-PASS: Seismic Data Processing for the Niigata Experiment
 
 ## 1. Project Overview
-This repository contains a Python script designed for the processing and analysis of passive seismic data collected during the Niigata experiment. The workflow handles data from various sensor types (Atom and SmartSolo) and performs a series of standard and advanced seismological analyses.
+This repository contains a Python script designed for the processing and analysis of  seismic data collected during the Niigata experiment. The workflow handles data from various sensor types (Atom and SmartSolo) and performs a series of standard and advanced seismological analyses.
 
 The primary goals of the processing pipeline are:
 
