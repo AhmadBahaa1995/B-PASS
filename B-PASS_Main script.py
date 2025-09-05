@@ -21,7 +21,7 @@ data from the Niigata experiment. It handles data loading from various
 sensor types (Atom and SmartSolo), preprocessing, cropping into experimental
 time windows, cross-correlation analysis, and other advanced analyses.
 
-Author: [Your Name/Organization]
+Author: Ahmad Bahaa/The University of Tokyo
 Date: 2024-09-05
 Version: 1.0
 
