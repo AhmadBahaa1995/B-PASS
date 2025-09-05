@@ -3,7 +3,7 @@
 B_PASS_simulation_modeling_cleaned.py
 
 This script loads a Marmousi elastic model, adds water and sediment layers,
-simulates the effect of CO2 injection, runs seismic surveys, and visualizes the results.
+simulates the effect of CO2 injection, runs seismic surveys at 3 diffrerent depthes, and visualizes the results.
 
 Author: Ahmad Bahaa/The University of Tokyo
 Date: 202-07-05
