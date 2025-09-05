@@ -1,54 +1,83 @@
-# B-PASS: Seismic Data Processing for the Niigata Experiment
+
+# B-PASS: Seismic Data Processing and Simulation
 
 ## 1. Project Overview
-This repository contains a Python script designed for the processing and analysis of  seismic data collected during the Niigata experiment. The workflow handles data from various sensor types (Atom and SmartSolo) and performs a series of standard and advanced seismological analyses.
+This repository contains Python scripts for processing seismic data from the Niigata experiment and for simulating seismic wave propagation to model the effects of CO₂ injection. The project combines real-world data analysis with forward modeling to understand subsurface changes.
 
-The primary goals of the processing pipeline are:
+The primary goals of the project are:
 
-- **Data Ingestion and Preprocessing**: Load raw seismic data, merge disparate time segments, and organize data by component (Z, E, N).
-- **Experiment Cropping**: Isolate and save clean, continuous data streams corresponding to specific experimental time windows.
-- **Cross-Correlation Analysis**: Utilize cross-correlation to identify coherent seismic phases between source signals and receiver stations.
-- **Advanced Analysis**: Conduct specialized analyses, including evaluating the stability of signal stacking over time and assessing the repeatability of the seismic source.
+- **Data Ingestion and Preprocessing**: Load raw seismic data (from Atom and SmartSolo sensors), merge time segments, and organize data by component.
+- **Cross-Correlation Analysis**: Utilize cross-correlation to identify coherent seismic phases and analyze signal stability and source repeatability.
+- **Seismic Forward Modeling**: Use the Marmousi-II elastic model to simulate seismic surveys.
+- **CO₂ Injection Simulation**: Model the geophysical response of CO₂ injection by altering the elastic properties of the subsurface model and simulating the time-lapse seismic response.
 
-This script is intended to provide a clear, commented, and reproducible workflow for researchers working with similar datasets.
+This repository provides reproducible workflows for both empirical data analysis and numerical simulation.
 
 ## 2. Repository Structure
 ```
 .
-├── Atom Data/                  # (Input) Raw 1-C and 3-C Atom sensor data (not in repo)
-├── Smart Solo/                 # (Input) Raw SmartSolo sensor data (not in repo)
-├── clean_data_MSEED/           # (Output) Processed and cropped data in MSEED format (ignored by git)
-├── Figures/                    # (Output) Generated plots and figures (ignored by git)
-├── B-PASS_processing_script.py # Main Python script for all processing and analysis
-├── README.md                   # This file
-├── LICENSE                     # Project license file
-└── .gitignore                  # Specifies files/directories to be ignored by Git
+├── Atom Data/                              # (Input) Raw 1-C and 3-C Atom sensor data 
+├── Smart Solo/                             # (Input) Raw SmartSolo sensor data 
+├── siesmic model/                          # (Input) Contains the Marmousi-II elastic model (.npy file)
+│   └── Marmousi2_elastic/
+│       └── model.npy
+├── clean_data_MSEED/                       # (Output) Processed and cropped data in MSEED format 
+├── Figures/                                # (Output) Generated plots from data analysis
+├── U-net project/                          # (Output) Generated plots from simulation script 
+├── B-PASS_processing_script.py                   # Main script for data preprocessing and analysis
+├── B_pass_simulation_modeling.py   # Main script for seismic modeling and CO₂ simulation
+├── LICENSE                                 # License file for the project
+└── README.md                               # This file
 ```
 
-Note: The raw data directories (`Atom Data/`, `Smart Solo/`) are expected to be present but are not tracked by Git to avoid committing large datasets.
+## 3. Dependencies
+The scripts require several scientific computing and seismology libraries.
 
-## 3. Requirements
-This script is written in Python 3 and relies on several key scientific computing libraries. You can install them using pip:
-
+**For `B-PASS_processing_script.py`:**
 ```bash
 pip install numpy pandas matplotlib seaborn obspy tqdm
 ```
 
+**For `B_pass_simulation_modeling.py`:**  
+This script requires a GPU-enabled environment with PyTorch and Deepwave installed.
+
+```bash
+# Install PyTorch (ensure correct version for your CUDA setup)
+# See: https://pytorch.org/get-started/locally/
+pip install torch numpy matplotlib scipy
+
+# Install Deepwave
+pip install deepwave
+```
+
 ## 4. Usage
-The main script, `B-PASS_processing_script.py`, is organized into sections. To run a specific part of the workflow, you will need to uncomment the main execution blocks within the script.
+The repository contains two main scripts for different workflows.
 
-### Data Preprocessing:
-1. Place your raw data in the `Atom Data/` and `Smart Solo/` directories according to the structure expected by the script.
-2. In `B-PASS_processing_script.py`, uncomment the lines under the "Main Execution Block for Preprocessing".
-3. Run the script. This will generate the `clean_data_MSEED/` directory with the processed data.
+### 4.1.  Data Processing (`B-PASS_processing_script.py`)
+1. Place your raw data in the `Atom Data/` and `Smart Solo/` directories.  
+2. In `B-PASS_processing_script.py`, uncomment the main execution blocks for either preprocessing or analysis.  
+3. Run the script:
+```bash
+python B-PASS_processing_script.py
+```
+Processed data will be saved in `clean_data_MSEED/` and figures in `Figures/`.
 
-### Cross-Correlation Analysis:
-1. Ensure the preprocessing step has been completed.
-2. In `B-PASS_processing_script.py`, uncomment the desired analysis calls under the "Main Execution Block for Analysis".
-3. Run the script. This will generate figures in the `Figures/` directory.
+### 4.2. Seismic Simulation (`B_PASS_simulation_modeling.py`)
+1. Ensure the Marmousi-II model is located at `siesmic model/Marmousi2_elastic/model.npy`.  
+2. Update the `filename` variable in the script if your path is different.  
+3. The script will:
+   - Load the elastic model.
+   - Inject a simulated CO₂ plume by altering Vp, Vs, and density.
+   - Run both elastic and scalar (P-wave) seismic surveys using Deepwave.
+   - Generate and save comparison plots in the `U-net project/` directory.
+
+Run the script:
+```bash
+python B_PASS_simulation_modeling.py
+```
 
 ## 5. License
-This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+This work is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](LICENSE).
 
 You are free to:
 
@@ -59,5 +88,3 @@ Under the following terms:
 - **Attribution** — You must give appropriate credit.
 - **NonCommercial** — You may not use the material for commercial purposes.
 - **NoDerivatives** — If you remix, transform, or build upon the material, you may not distribute the modified material.
-
-For more details, see the LICENSE file.
