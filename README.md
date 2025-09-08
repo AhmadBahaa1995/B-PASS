@@ -2,7 +2,7 @@
 # B-PASS: Seismic Data Processing and Simulation
 
 ## 1. Project Overview
-This repository contains Python scripts for processing seismic data from the Niigata experiment and for simulating seismic wave propagation to model the effects of CO₂ injection. The project combines real-world data analysis with forward modeling to understand subsurface changes.
+This repository contains Python scripts for processing seismic data from the Niigata experiment and for simulating seismic wave propagation to model the effects of CO₂ injection. The project combines real-world data analysis with forward modeling to understand subsurface changes (Doi:10.5281/zenodo.17075959).
 
 The primary goals of the project are:
 
