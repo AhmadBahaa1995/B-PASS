@@ -75,6 +75,8 @@ Run the script:
 ```bash
 python B_PASS_simulation_modeling.py
 ```
+Data set:
+The raw and stacked B-PASS source functions, along with formatted seismometer datasets, are archived here under [DOI: 10.5281/zenodo.17075241].
 
 ## 5. License
 This work is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](LICENSE).
