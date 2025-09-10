@@ -23,7 +23,7 @@ This repository provides reproducible workflows for both empirical data analysis
 │       └── model.npy
 ├── clean_data_MSEED/                       # (Output) Processed and cropped data in MSEED format 
 ├── Figures/                                # (Output) Generated plots from data analysis
-├── U-net project/                          # (Output) Generated plots from simulation script 
+├── Simulation output/                      # (Output) Generated plots from simulation script 
 ├── B-PASS_processing_script.py             # Main script for data preprocessing and analysis
 ├── B_pass_simulation_modeling.py           # Main script for seismic modeling and CO₂ simulation
 ├── LICENSE                                 # License file for the project
