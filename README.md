@@ -69,7 +69,7 @@ Processed data will be saved in `clean_data_MSEED/` and figures in `Figures/`.
    - Load the elastic model.
    - Inject a simulated CO₂ plume by altering Vp, Vs, and density.
    - Run both elastic and scalar (P-wave) seismic surveys using Deepwave.
-   - Generate and save comparison plots in the `U-net project/` directory.
+   - Generate and save comparison plots in the `Simulation output/` directory.
 
 Run the script:
 ```bash
